@@ -8,6 +8,26 @@
                 <div class="card-header">{{ __('Reset Password') }}</div>
 
                 <div class="card-body">
+                    @extends('layouts.app')
+
+{{-- @section('content')
+<form method="POST" action="{{ route('password.update') }}">
+    @csrf
+    <input type="hidden" name="token" value="{{ $token }}">
+    
+    <label>Email Address</label>
+    <input type="email" name="email" required>
+    
+    <label>New Password</label>
+    <input type="password" name="password" required>
+    
+    <label>Confirm New Password</label>
+    <input type="password" name="password_confirmation" required>
+    
+    <button type="submit">Reset Password</button>
+</form>
+@endsection --}}
+
                     <form method="POST" action="{{ route('password.update') }}">
                         @csrf
 

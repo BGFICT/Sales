@@ -74,6 +74,13 @@
                                             Lost your password?
                                         </a>
                                     @endif
+                                    {{-- showResetForm --}}
+                                    {{-- <form method="POST" action="/password-reset">
+                                        @csrf
+                                        <input type="email" name="email" placeholder="Enter your email">
+                                        <button type="submit">Reset Password</button>
+                                    </form> --}}
+                                    
                                 </div>
                             </div>
                         </form>

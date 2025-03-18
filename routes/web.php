@@ -23,6 +23,11 @@
     use App\Http\Controllers\DownloadController;
 
 
+    use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\ResetPasswordController;
+use Illuminate\Http\Request;
+
+
     /*
     |--------------------------------------------------------------------------
     | Web Routes
@@ -54,8 +59,42 @@
 
     Route::get('user/register', [FrontendController::class, 'register'])->name('register.form');
     Route::post('user/register', [FrontendController::class, 'registerSubmit'])->name('register.submit');
+
+
+
 // Reset password
     Route::post('password-reset', [FrontendController::class, 'showResetForm'])->name('password.reset');
+    // Show Forgot Password Form
+Route::get('password-reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+
+// Send Reset Link to Email
+Route::post('password/reset', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+
+// Show Reset Password Form
+// Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+
+
+// Handle Password Reset Request
+Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
+
+
+
+// // Show password reset request form (email input)
+// Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+
+// // Handle form submission (send reset link to email)
+// Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+
+// // Show password reset form (new password input)
+// Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+
+// // Handle password reset submission
+// Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
+
+
+
+
 // Socialite
     Route::get('login/{provider}/', [LoginController::class, 'login'])->name('facebook.login');
     Route::get('login/{provider}/callback/', [LoginController::class, 'Callback'])->name('login.callback');

@@ -45,6 +45,17 @@
                       Reset Password
                     </button>
                   </form>
+                  {{-- @extends('layouts.app')
+
+@section('content')
+<form method="POST" action="{{ route('password.email') }}">
+    @csrf
+    <label>Email Address</label>
+    <input type="email" name="email" required>
+    <button type="submit">Send Password Reset Link</button>
+</form>
+@endsection --}}
+
                   <hr>
                   <div class="text-center">
                     <a class="small" href="{{route('login')}}">Already have an account? Login!</a>
