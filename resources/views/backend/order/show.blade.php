@@ -130,6 +130,10 @@
                         <td>Post Code</td>
                         <td> : {{$order->post_code}}</td>
                     </tr>
+                    <tr>
+                      <td>Phone No.</td>
+                      <td> : {{$order->phone}}</td>
+                  </tr>
               </table>
             </div>
           </div>

@@ -11,6 +11,8 @@ use Carbon\Carbon;
 use Spatie\Activitylog\Models\Activity;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
+use App\Models\Order;
+
 class AdminController extends Controller
 {
     public function index(){

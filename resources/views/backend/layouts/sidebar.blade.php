@@ -122,13 +122,14 @@
     </li>
 
 
+{{-- mpesa payment table --}} {{--  fas fa-phone-money-bil-wave--}}
+<li class="nav-item">
+  <a class="nav-link" href="{{route('mpesa_orders.index')}}">
+      <i class="fas fa-money-bill-wave"></i>
+      <span>M-Pesa Payments</span>
+  </a>
+</li>
 
-    <li class="nav-item">
-      <a class="nav-link" href="{{route('mpesa_orders.index')}}">
-          <i class="fas fa-hammer fa-chart-area"></i>
-          <span>M-Pesa Payments</span>
-      </a>
-  </li>
 
     <!-- Reviews -->
     <li class="nav-item">

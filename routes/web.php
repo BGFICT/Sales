@@ -212,6 +212,15 @@ Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('
         // Password Change
         Route::get('change-password', [AdminController::class, 'changePassword'])->name('change.password.form');
         Route::post('change-password', [AdminController::class, 'changPasswordStore'])->name('change.password');
+
+
+
+        // mpesa payment table
+        Route::get('/mpesa_orders', [HomeController::class, 'mpesa_orders'])->name('mpesa_orders.index');
+        Route::get('/mpesa_orders/show/{id}', "HomeController@mpesaShow")->name('mpesa_orders.show');
+        // Route::get('/order', "HomeController@orderIndex")->name('user.order.index');
+        // Route::delete('/order/delete/{id}', [HomeController::class, 'userOrderDelete'])->name('user.order.delete');
+
     });
 
 
@@ -224,13 +233,7 @@ Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('
         //  Order
         Route::get('/order', "HomeController@orderIndex")->name('user.order.index');
         Route::get('/order/show/{id}', "HomeController@orderShow")->name('user.order.show');
-        Route::delete('/order/delete/{id}', [HomeController::class, 'userOrderDelete'])->name('user.order.delete');
-         //  Order
-         Route::get('/order', "HomeController@orderIndex")->name('user.order.index');
-         Route::get('/order/show/{id}', "HomeController@mpesaorderShow")->name('user.order.show');
-         Route::delete('/order/delete/{id}', [HomeController::class, 'userOrderDelete'])->name('user.order.delete');
-
-         Route::get('/mpesa-orders', [HomeController::class, 'index'])->name('mpesa_orders.index');
+        Route::delete('/order/delete/{id}', [HomeController::class, 'userOrderDelete'])->name('user.order.delete');     
 
 
         // Product Review
@@ -310,3 +313,7 @@ Route::get('/ipay_payment', [HomeController::class, 'handlePaymentCallback'])->n
 Route::get('download/{token}', [DownloadController::class, 'download'])
     ->name('secure.download')
     ->middleware('signed');
+
+
+Route::post('paypal', 'PaymentController@payWithpaypal');
+Route::get('status', 'PaymentController@getPaymentStatus');

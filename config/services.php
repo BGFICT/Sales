@@ -37,16 +37,16 @@ return [
      'google' => [
         'client_id' => env('GOOGLE_CLIENT_ID'),
         'client_secret' =>env('GOOGLE_CLIENT_SECRET'),
-        'redirect' => 'http://localhost:8000/auth/google/callback',
+        'redirect' => 'https://salespage.betterglobeforestry.com/auth/google/callback',
         
         // 'client_id' => env('GOOGLE_APP_ID'),
         // 'client_secret' => env('GOOGLE_APP_SECRET'),
         // 'redirect' => env('GOOGLE_REDIRECT'),
      ],
      'facebook' => [
-        'client_id' => '', //Facebook API
-        'client_secret' => '', //Facebook Secret
-        'redirect' => 'http://localhost:8000/login/facebook/callback',
+        'client_id' => '1432436891465446', //Facebook API
+        'client_secret' => 'b8061b84591686bf4941db7e5dfec83e', //Facebook Secret
+        'redirect' => 'https://salespage.betterglobeforestry.com/login/facebook/callback',
      ],
      
      'mode'    => env('PAYPAL_MODE', 'sandbox'), // Can be 'sandbox' or 'live'

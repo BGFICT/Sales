@@ -17,14 +17,14 @@
         <table class="table table-bordered" id="order-dataTable" width="100%" cellspacing="0">
           <thead>
             <tr>
-              <th>Order_id</th>
+            <th>Order_id</th>
             <th>Receipt.</th>
             <th>Name</th>
             <th>Phone Number</th>
             <th>Email</th>
             <th>Amount</th>
             <th>Status</th>
-            <th>Action</th>
+            <th>Actions</th>
             </tr>
           </thead>
           <tfoot>

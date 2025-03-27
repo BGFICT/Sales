@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\MpesaPayment;
 
 use Illuminate\Http\Request;
 use App\User;
@@ -18,8 +19,20 @@ use Illuminate\Contracts\Session\Session as SessionSession;
 use Session;
 use Stripe;
 
+
+
+use PayPal\Api\Amount;
+use PayPal\Api\Details;
+use PayPal\Api\Item;
+use PayPal\Api\Itemlist;
+use PayPal\Api\Payer;
+use PayPal\Api\Payment;
+use PayPal\Api\RedirectUrls;
+use PayPal\Api\Transaction;
+
 class HomeController extends Controller
 {
+    private $_api_context;
 
     private $gateway;
     /**
@@ -74,10 +87,6 @@ class HomeController extends Controller
         return view('user.order.index')->with('orders',$orders);
     } 
     
-    public function mpesaorderIndex(){
-        $orders=Order::orderBy('id','DESC')->where('user_id',auth()->user()->id)->paginate(10);
-        return view('user.mpesa_orders.index')->with('orders',$orders);
-    }
     public function userOrderDelete($id)
     {
         $order=Order::find($id);
@@ -109,12 +118,7 @@ class HomeController extends Controller
         // return $order;
         return view('user.order.show')->with('order',$order);
     }
-    public function mpesaorderShow($id)
-    {
-        $order=Order::find($id);
-        // return $order;
-        return view('user.mpesaorder.mpesa')->with('order',$order);
-    }
+   
     // Product Review
     public function productReviewIndex(){
         $reviews=ProductReview::getAllUserReview();
@@ -307,6 +311,12 @@ class HomeController extends Controller
     }
     public function paypalPost(Request $request,$total_amount)
     {
+        $paypal_conf = \Config::get('paypal');
+        $this->_api_context = new ApiContext(new OAuthTokenCredential(
+            $paypal_conf['client_id'],
+            $paypal_conf['client_secret']
+        ));
+        $this->api_context->setConfig($paypal_conf['settings']);
     //    try{
     //         $response = $this->gateway->purchase(array(
     //             'total_amount' => $request->total_amount,
@@ -324,6 +334,62 @@ class HomeController extends Controller
     //        return $th->getMessage();
     //    }
     }
+
+
+    // public function paywithpaypal(Request $request){
+    //     $payer = new Payer();
+    //     $payer->setPaymentMethod('paypal');
+
+    //     $item_1 = new Item();
+
+    //     $item_1->setName('Item 1')
+    //            ->setCurrency('EURO')
+    //            ->setQuantity(1)
+    //            ->setPrice($request->get('amount'));
+    //     $item_list = new ItemList();
+    //     $item_list->setItems(array($item_1));
+
+    //     $amount = new Amount();
+    //     $amount->setCurrency('EURO')
+    //            ->setTotal($request->get('amount'));
+    //     $transaction = new Transaction();
+    //     $transaction->setAmount($amount)
+    //                 ->setItemList($item_list)
+    //                 ->setDescription('Your transaction description');
+
+    //     $redirect_urls = new RedirectUrls();
+    //     $redirect_urls->setReturnUrl(URL::to('status'))
+    //                   ->setCancelUrl(URL::to('status'));
+
+    //     $payment = new Payment();
+    //     $payment->setIntent('Sale')
+    //             ->setPayer($payer)
+    //             ->setRedirectUrls($redirect_urls)
+    //             ->setTransactions(array($transaction));
+
+
+    //     try{
+    //         $payment->create($this->_api_context);
+    //   }catch (\PayPal\Exception\PPConnectionException $ex){
+    //     if (\Config::get('app.debug')){
+    //         \Session::put('error', 'Connection timeout');
+    //         return Redirect::to('/');
+
+    //     }
+    //     else{
+    //         \Session::put('error', 'Some error occur, sorry for inconvenient');
+    //         return Redirect::to('/');
+    //     }
+    //     }
+
+    //     foreach ($payment->getLinks() as $link){
+    //         if ($link->getRel() == 'approval_url'){
+    //             $redirect_urls = $link->getHref();
+    //             break;
+    //         }
+    //     }
+    //   }
+    // }
 
     // cash oder
     public function cash_oder($total_amount){
@@ -421,5 +487,21 @@ class HomeController extends Controller
             return response()->json(['message' => 'Payment failed!', 'status' => $status]);
         }
     }
+
+    public function mpesa_orders()
+    {
+        // Retrieve all M-Pesa payments from the database
+        $mpesa_orders = MpesaPayment::all();
+        // dd($mpesa_orders); // Debugging the data
+    
+        return view('backend.mpesa.orders', compact('mpesa_orders')); // compact('mpesa_orders')
+    }
    
-}
+
+    public function mpesaShow($id)
+    {
+        $mpesa_orders=MpesaPayment::find($id);
+        // return $order;
+        return view('backend.mpesa.show')->with('mpesa',$mpesa_orders);
+    }
+}                       

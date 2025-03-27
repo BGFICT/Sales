@@ -62,6 +62,7 @@
                                             <i class="fab fa-google fa-fw"></i> Login with Google
                                         </a> --}}
                                         <a href="{{route('facebook.login','facebook')}}" class="btn btn-facebook"><i class="ti-facebook"></i></a>
+                                        
                                         {{-- <a href="{{route('login.redirect','github')}}" class="btn btn-github"><i class="ti-github"></i></a> --}}
                                         <a href="{{route('google.login')}}" class="btn btn-google"><i class="ti-google"></i></a>
 
