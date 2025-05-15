@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Cart;
 use App\Models\Order;
+use App\Models\MpesaPayment;
 use App\Models\Shipping;
 use App\Models\Purchase;
 
@@ -284,6 +285,17 @@ class OrderController extends Controller
         $pdf=PDF::loadview('backend.order.pdf',compact('order'));
         return $pdf->download($file_name);
     }
+
+    // PDF generate
+    public function mpesapdf(Request $request){
+        $MpesaPayment=MpesaPayment::getAllOrder($request->id);
+        // return $order;
+        $file_name=$MpesaPayment->receipt.'-'.$MpesaPayment->first_name.'.pdf';
+        // return $file_name;
+        $pdf=PDF::loadview('backend.mpesa.pdf',compact('MpesaPayment'));
+        return $pdf->download($file_name);
+    }
+
     // Income chart
     public function incomeChart(Request $request){
         $year=\Carbon\Carbon::now()->year;

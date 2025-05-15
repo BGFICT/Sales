@@ -84,23 +84,23 @@
   <div class="invoice-description">
     <div class="invoice-left-top float-left">
       <h6>Invoice to</h6>
-       <h3>{{$order->first_name}} {{$order->last_name}}</h3>
+       {{-- <h3>{{$order->first_name}} {{$order->last_name}}</h3> --}}
        <div class="address">
         <p>
           <strong>Country: </strong>
-          {{$order->country}}
+          {{-- {{$order->country}} --}}
         </p>
         <p>
           <strong>Address: </strong>
-          {{ $order->address1 }} OR {{ $order->address2}}
+          {{-- {{ $order->address1 }} OR {{ $order->address2}} --}}
         </p>
-         <p><strong>Phone:</strong> {{ $order->phone }}</p>
-         <p><strong>Email:</strong> {{ $order->email }}</p>
+         {{-- <p><strong>Phone:</strong> {{ $order->phone }}</p>
+         <p><strong>Email:</strong> {{ $order->email }}</p> --}}
        </div>
     </div>
     <div class="invoice-right-top float-right" class="text-right">
-      <h3>Invoice #{{$order->order_number}}</h3>
-      <p>{{ $order->created_at->format('D d m Y') }}</p>
+      {{-- <h3>Invoice #{{$order->order_number}}</h3> --}}
+      {{-- <p>{{ $order->created_at->format('D d m Y') }}</p> --}}
       {{-- <img class="img-responsive" src="data:image/png;base64, {{ base64_encode(QrCode::format('png')->size(150)->generate(route('admin.product.order.show', $order->id )))}}"> --}}
     </div>
     <div class="clearfix"></div>

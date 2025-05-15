@@ -500,8 +500,8 @@ class HomeController extends Controller
 
     public function mpesaShow($id)
     {
-        $mpesa_orders=MpesaPayment::find($id);
+        $MpesaPayment=MpesaPayment::find($id);
         // return $order;
-        return view('backend.mpesa.show')->with('mpesa',$mpesa_orders);
+        return view('backend.mpesa.show')->with('MpesaPayment',$MpesaPayment);
     }
 }                       

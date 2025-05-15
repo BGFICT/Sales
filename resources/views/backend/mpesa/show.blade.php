@@ -4,8 +4,8 @@
 
 @section('main-content')
 <div class="card">
-<h5 class="card-header">Mpesa 
-  {{-- <a href="{{route('mpesa.pdf',$order->id)}}" class=" btn btn-sm btn-primary shadow-sm float-right"><i class="fas fa-download fa-sm text-white-50"></i>  --}}
+<h5 class="card-header">MPESA {{$MpesaPayment->name}}
+  <a href="{{route('MpesaPayment.pdf',$MpesaPayment->id)}}" class=" btn btn-sm btn-primary shadow-sm float-right"><i class="fas fa-download fa-sm text-white-50"></i> 
     Generate PDF</a>
   </h5>
   <div class="card-body">
@@ -26,7 +26,7 @@
         </tr>
       </thead>
       <tbody>
-        @foreach($mpesa_orders as $MpesaPayment) 
+        {{-- @foreach($mpesa_orders as $MpesaPayment)  --}}
         <tr>
           <td>{{$MpesaPayment->id}}</td>
           <td>{{$MpesaPayment->receipt}}</td>
@@ -57,7 +57,7 @@
             </td> --}}
 
         </tr>
-        @endforeach
+        {{-- @endforeach --}}
       </tbody>
     </table>
 
@@ -78,7 +78,7 @@
                     </tr>
                     <tr>
                         <td>Payment Date</td>
-                        <td> : {{$MpesaPayment->created_at->format('D d M, Y')}} at {{$order->created_at->format('g : i a')}} </td>
+                        <td> : {{$MpesaPayment->created_at->format('D d M, Y')}} at {{$MpesaPayment->created_at->format('g : i a')}} </td>
                     </tr>
                     <tr>
                         <td>Name</td>
@@ -98,7 +98,7 @@
                     </tr>
                     <tr>
                         <td>Total Amount</td>
-                        <td> : $ {{number_format($MpesaPayment->total_amount,2)}}</td>
+                        <td> : $ {{number_format($MpesaPayment->amount,2)}}</td>
                     </tr>
                     {{-- <tr>
                         <td>Payment Method</td>
@@ -118,27 +118,27 @@
               <table class="table">
                     <tr class="">
                         <td>Name of the Item</td>
-                        <td> : {{$order->first_name}} {{$order->last_name}}</td>
+                        {{-- <td> : {{$order->first_name}} {{$order->last_name}}</td> --}}
                     </tr>
                     <tr>
                         <td>Email</td>
-                        <td> : {{$order->email}}</td>
+                        {{-- <td> : {{$order->email}}</td> --}}
                     </tr>
                     <tr>
                         <td>Phone No.</td>
-                        <td> : {{$order->phone}}</td>
+                        {{-- <td> : {{$order->phone}}</td> --}}
                     </tr>
                     <tr>
                         <td>Quantity</td>
-                        <td> : {{$order->address1}}, {{$order->address2}}</td>
+                        {{-- <td> : {{$order->address1}}, {{$order->address2}}</td> --}}
                     </tr>
                     <tr>
                         <td>Total Price</td>
-                        <td> : {{$order->country}}</td>
+                        {{-- <td> : {{$order->country}}</td> --}}
                     </tr>
                     <tr>
                         <td>Post Code</td>
-                        <td> : {{$order->post_code}}</td>
+                        {{-- <td> : {{$order->post_code}}</td> --}}
                     </tr>
                     
               </table>

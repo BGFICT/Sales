@@ -218,6 +218,8 @@ Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('
         // mpesa payment table
         Route::get('/mpesa_orders', [HomeController::class, 'mpesa_orders'])->name('mpesa_orders.index');
         Route::get('/mpesa_orders/show/{id}', "HomeController@mpesaShow")->name('mpesa_orders.show');
+        Route::get('MpesaPayment/pdf/{id}', [OrderController::class, 'mpesapdf'])->name('MpesaPayment.pdf');
+
         // Route::get('/order', "HomeController@orderIndex")->name('user.order.index');
         // Route::delete('/order/delete/{id}', [HomeController::class, 'userOrderDelete'])->name('user.order.delete');
 
