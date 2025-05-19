@@ -23,7 +23,8 @@
               <th>Slug</th>
               <th>Is Parent</th>
               <th>Parent Category</th>
-              <th>sub Parent Category</th>
+              <th>Is Parent Category</th>
+              <th>Sub Parent Category</th>
               <th>Photo</th>
               <th>Status</th>
               <th>Action</th>
@@ -36,6 +37,7 @@
               <th>Slug</th>
               <th>Is Parent</th>
               <th>Parent Category</th>
+              <th>Is Parent Category</th>
               <th>Sub Parent Category</th>
               <th>Photo</th>
               <th>Status</th>
@@ -57,6 +59,9 @@
                     <td>
                         {{$category->parent_info->title ?? ''}}
                     </td>
+                    <td>
+                      {{$category->parent_info->title ?? ''}}
+                  </td>
                     <td>
                         @if($category->photo)
                             <img src="{{$category->photo}}" class="img-fluid" style="max-width:80px" alt="{{$category->photo}}">
